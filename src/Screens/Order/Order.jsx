@@ -149,8 +149,8 @@ const Order = ({ route, navigation }) => {
 
           <View className="flex-row justify-between mt-6 px-6">
             {[
-              { image: delivery, name: "Free" },
-              { image: fire, name: "kcal" },
+              { image: delivery, name: "6/1 5:30pm" },
+              { image: fire, name: "25 left" },
               { image: rating, name: "4.8" },
             ].map((item, index) => (
               <View

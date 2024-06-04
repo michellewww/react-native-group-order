@@ -42,7 +42,7 @@ const Home = () => {
       />
       <Tab.Screen
         name="search"
-        component={Search}
+        component={HomeBody}
         options={{
           tabBarIcon: ({ color }) => (
             <MagnifyingGlassIcon size={28} color={color} />
@@ -51,7 +51,7 @@ const Home = () => {
       />
       <Tab.Screen
         name="cart"
-        component={Cart}
+        component={HomeBody}
         options={{
           tabBarIcon: ({ color }) => (
             <ShoppingBagIcon size={28} color={color} />
