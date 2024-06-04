@@ -38,7 +38,7 @@ const HomeBody = () => {
         <View className="px-6">
           <Text className="text-center font-black text-3xl text-black">
             What do you want for{" "}
-            <Text className="text-primaryColor">Dinner</Text>
+            <Text className="text-primaryColor">Lunch/Dinner</Text>
           </Text>
         </View>
 

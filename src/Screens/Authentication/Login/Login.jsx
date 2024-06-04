@@ -27,7 +27,7 @@ const Login = ({navigation}) => {
     >
       <View className="space-y-4">
         <Text className="text-center font-bold text-5xl text-gray-700 mt-8">
-          katsura
+          GooseCart
         </Text>
         <Text className="text-2xl font-semibold text-gray-700 text-center">
           Welcome back! Glad to see you again!

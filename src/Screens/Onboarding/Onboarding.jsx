@@ -1,11 +1,10 @@
 import {
   View,
   Text,
-  Image,
   StyleSheet,
   Dimensions,
   TouchableOpacity,
-  Pressable
+  Pressable,
 } from "react-native";
 import React, { useState } from "react";
 import Animated, {
@@ -16,7 +15,6 @@ import Animated, {
 import { useNavigation } from "@react-navigation/native";
 import onboarding1 from "../../../assets/Onboarding/onb1.png";
 import onboarding2 from "../../../assets/Onboarding/onb2.png";
-import onboarding3 from "../../../assets/Onboarding/onb3.png";
 import { ArrowSmallRightIcon } from "react-native-heroicons/solid";
 
 const { height, width } = Dimensions.get("screen");
@@ -38,30 +36,19 @@ const Onboarding = () => {
     };
   });
 
-  const screenThree = useAnimatedStyle(() => {
-    return {
-      opacity: withTiming(sharedValues.value === 2 ? 1 : 0, { duration: 1000 }),
-    };
-  });
+  const animatedStyles = [screenOne, screenTwo];
 
-  const animatedStyles = [screenOne, screenTwo, screenThree];
-
-  const images = [onboarding1, onboarding2, onboarding3];
+  const images = [onboarding1, onboarding2];
   const texts = [
     {
-      title: "Made with love",
-      subTitle:
-        "We prepare all dishes with love and passion! Especially for you!",
+      title: "Enjoy your order",
+      subTitle: "Take a moment with the hot, tasty, and healthy meal we made for you.",
     },
     {
       title: "Delivered with care",
-      subTitle: "Our couriers handle all your packages with great care.",
+      subTitle: "Restaurants deliver your order with care, love, and without service charges!",
     },
-    {
-      title: "Enjoy your order",
-      subTitle:
-        "Take a moment with the hot,tasty and healthy meal we made for you.",
-    },
+
   ];
 
   return (
@@ -83,7 +70,7 @@ const Onboarding = () => {
           className="font-bold text-5xl text-white text-center"
           style={{ marginTop: height / 6 }}
         >
-          katsura
+          GooseCart
         </Text>
       </View>
 
@@ -119,7 +106,7 @@ const Onboarding = () => {
           <View
             className={`${
               active.includes(0) ? `bg-primaryColor` : `bg-gray-100`
-            } w-[40%] py-1`}
+            } w-[50%] py-1`}
           />
           <View
             className={`${
@@ -128,7 +115,7 @@ const Onboarding = () => {
           >
             <TouchableOpacity
               onPress={() => {
-                if (sharedValues.value === 2) {
+                if (sharedValues.value === 1) {
                   navigation.navigate("authentication");
                 } else {
                   setActive((prev) => [...prev, prev[prev.length - 1] + 1]);
@@ -142,8 +129,8 @@ const Onboarding = () => {
           </View>
           <View
             className={`${
-              active.includes(2) ? `bg-primaryColor` : `bg-gray-100`
-            } w-[40%] py-1`}
+              active.includes(1) ? `bg-primaryColor` : `bg-gray-100`
+            } w-[50%] py-1`}
           />
         </View>
       </View>

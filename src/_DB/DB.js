@@ -1,8 +1,8 @@
 import bugger from "../../assets/Categories/bugger.png";
-import pizza from "../../assets/Categories/pizza.png";
-import salad from "../../assets/Categories/salad.png";
+import szechuan from "../../assets/Categories/szechuan.png";
+import dimsum from "../../assets/Categories/dimsum.png";
 import shishi from "../../assets/Categories/shishi.png";
-import chicken from "../../assets/Categories/chicken.png";
+import noodle from "../../assets/Categories/noodles.png";
 
 import beef from "../../assets/Burger/beef.png";
 import cheese from "../../assets/Burger/cheese.png";
@@ -23,16 +23,16 @@ export const data = [
     image: bugger,
   },
   {
-    name: "Pizza",
-    image: pizza,
+    name: "Szechuan",
+    image: szechuan,
   },
   {
-    name: "Salad",
-    image: salad,
+    name: "Dim Sum",
+    image: dimsum,
   },
   {
-    name: "Chicken",
-    image: chicken,
+    name: "Noodle",
+    image: noodle,
   },
   {
     name: "Shushi",
@@ -107,136 +107,136 @@ export const populars = [
       },
     ],
   },
-  {
-    name: "Hawaiian King Burger",
-    image: hawaiian,
-    id: "_3",
-    price: 66,
-    delivery_time: "10 mins",
-    dietary: "Vegetarian",
-    rating: 2,
-    popular: "Deals",
-    subText: "Beef Patty and special sauce",
-    ingridients: [
-      {
-        name: "Beef",
-        image: beef2,
-      },
-      {
-        name: "Lettuce",
-        image: lettuce,
-      },
-      {
-        name: "Olive Oil",
-        image: olive,
-      },
-      {
-        name: "Egg",
-        image: egg,
-      },
-      {
-        name: "Tomato",
-        image: tomato,
-      },
-    ],
-  },
-  {
-    name: "Paneer Burger",
-    image: paneer,
-    id: "_4",
-    price: 90,
-    delivery_time: "30 mins",
-    dietary: "Gluten-free",
-    rating: 4,
-    popular: "For you",
-    subText: "Beef Patty and special sauce",
-    ingridients: [
-      {
-        name: "Beef",
-        image: beef2,
-      },
-      {
-        name: "Lettuce",
-        image: lettuce,
-      },
-      {
-        name: "Olive Oil",
-        image: olive,
-      },
-      {
-        name: "Egg",
-        image: egg,
-      },
-      {
-        name: "Tomato",
-        image: tomato,
-      },
-    ],
-  },
-  {
-    name: "Cheese Veg Burger",
-    image: cheese,
-    id: "_5",
-    price: 41,
-    delivery_time: "20 mins",
-    dietary: "Vegan",
-    rating: 2,
-    popular: "Deals",
-    subText: "Beef Patty and special sauce",
-    ingridients: [
-      {
-        name: "Beef",
-        image: beef2,
-      },
-      {
-        name: "Lettuce",
-        image: lettuce,
-      },
-      {
-        name: "Olive Oil",
-        image: olive,
-      },
-      {
-        name: "Egg",
-        image: egg,
-      },
-      {
-        name: "Tomato",
-        image: tomato,
-      },
-    ],
-  },
-  {
-    name: "Prince Burger Meal",
-    image: prince,
-    id: "_6",
-    price: 13,
-    delivery_time: "30 mins",
-    dietary: "Vegetarian",
-    rating: 5,
-    popular: "For you",
-    subText: "Beef Patty and special sauce",
-    ingridients: [
-      {
-        name: "Beef",
-        image: beef2,
-      },
-      {
-        name: "Lettuce",
-        image: lettuce,
-      },
-      {
-        name: "Olive Oil",
-        image: olive,
-      },
-      {
-        name: "Egg",
-        image: egg,
-      },
-      {
-        name: "Tomato",
-        image: tomato,
-      },
-    ],
-  },
+//   {
+//     name: "Hawaiian King Burger",
+//     image: hawaiian,
+//     id: "_3",
+//     price: 66,
+//     delivery_time: "10 mins",
+//     dietary: "Vegetarian",
+//     rating: 2,
+//     popular: "Deals",
+//     subText: "Beef Patty and special sauce",
+//     ingridients: [
+//       {
+//         name: "Beef",
+//         image: beef2,
+//       },
+//       {
+//         name: "Lettuce",
+//         image: lettuce,
+//       },
+//       {
+//         name: "Olive Oil",
+//         image: olive,
+//       },
+//       {
+//         name: "Egg",
+//         image: egg,
+//       },
+//       {
+//         name: "Tomato",
+//         image: tomato,
+//       },
+//     ],
+//   },
+//   {
+//     name: "Paneer Burger",
+//     image: paneer,
+//     id: "_4",
+//     price: 90,
+//     delivery_time: "30 mins",
+//     dietary: "Gluten-free",
+//     rating: 4,
+//     popular: "For you",
+//     subText: "Beef Patty and special sauce",
+//     ingridients: [
+//       {
+//         name: "Beef",
+//         image: beef2,
+//       },
+//       {
+//         name: "Lettuce",
+//         image: lettuce,
+//       },
+//       {
+//         name: "Olive Oil",
+//         image: olive,
+//       },
+//       {
+//         name: "Egg",
+//         image: egg,
+//       },
+//       {
+//         name: "Tomato",
+//         image: tomato,
+//       },
+//     ],
+//   },
+//   {
+//     name: "Cheese Veg Burger",
+//     image: cheese,
+//     id: "_5",
+//     price: 41,
+//     delivery_time: "20 mins",
+//     dietary: "Vegan",
+//     rating: 2,
+//     popular: "Deals",
+//     subText: "Beef Patty and special sauce",
+//     ingridients: [
+//       {
+//         name: "Beef",
+//         image: beef2,
+//       },
+//       {
+//         name: "Lettuce",
+//         image: lettuce,
+//       },
+//       {
+//         name: "Olive Oil",
+//         image: olive,
+//       },
+//       {
+//         name: "Egg",
+//         image: egg,
+//       },
+//       {
+//         name: "Tomato",
+//         image: tomato,
+//       },
+//     ],
+//   },
+//   {
+//     name: "Prince Burger Meal",
+//     image: prince,
+//     id: "_6",
+//     price: 13,
+//     delivery_time: "30 mins",
+//     dietary: "Vegetarian",
+//     rating: 5,
+//     popular: "For you",
+//     subText: "Beef Patty and special sauce",
+//     ingridients: [
+//       {
+//         name: "Beef",
+//         image: beef2,
+//       },
+//       {
+//         name: "Lettuce",
+//         image: lettuce,
+//       },
+//       {
+//         name: "Olive Oil",
+//         image: olive,
+//       },
+//       {
+//         name: "Egg",
+//         image: egg,
+//       },
+//       {
+//         name: "Tomato",
+//         image: tomato,
+//       },
+//     ],
+//   },
 ];
