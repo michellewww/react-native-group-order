@@ -78,10 +78,11 @@ const Login = ({navigation}) => {
       </View>
 
       <Text className="text-center font-semibold text-gray-500">
-        Dont have an account? <Text className="text-primaryColor">Sign Up</Text>
       </Text>
     </ScrollView>
   );
+
+  
 };
 
 export default Login;

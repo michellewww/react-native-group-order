@@ -55,8 +55,8 @@ const Profile = () => {
           }}
         />
         <View className="ml-4">
-          <Text className="font-bold text-lg">Michelle Wang</Text>
-          <Text className="text-[12px] text-gray-500">michelle@gmail.com</Text>
+          <Text className="font-bold text-lg">Sophia Chen</Text>
+          <Text className="text-[12px] text-gray-500">sophia@gmail.com</Text>
         </View>
       </View>
 

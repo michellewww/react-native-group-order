@@ -27,7 +27,7 @@ const HomeBody = () => {
           <Text></Text>
           <View className="flex-row items-center space-x-2">
             <MapPinIcon color="#0BCE83" size={20} />
-            <Text className="font-bold text-lg">Johns Hopkins (Baltimore)</Text>
+            <Text className="font-bold text-lg">Atlanta, GA</Text>
             <ChevronDownIcon color="#0BCE83" size={15} />
           </View>
           <TouchableOpacity className="h-10 w-10 bg-white p-1 rounded-xl flex-row items-center justify-center">

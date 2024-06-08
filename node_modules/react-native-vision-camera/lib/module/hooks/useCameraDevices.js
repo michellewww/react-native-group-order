@@ -8,6 +8,7 @@ const DefaultCameraDevices = {
   front: undefined,
   unspecified: undefined
 };
+
 /**
  * Gets the best available {@linkcode CameraDevice}. Devices with more cameras are preferred.
  *
@@ -21,23 +22,34 @@ const DefaultCameraDevices = {
  * ```
  */
 
+/**
+ * Gets a {@linkcode CameraDevice} for the requested device type.
+ *
+ * @param {PhysicalCameraDeviceType | LogicalCameraDeviceType} deviceType Specifies a device type which will be used as a device filter.
+ * @returns A {@linkcode CameraDevice} for the requested device type.
+ * @throws {@linkcode CameraRuntimeError} if no device was found.
+ * @example
+ * ```tsx
+ * const device = useCameraDevice('wide-angle-camera')
+ * // ...
+ * return <Camera device={device} />
+ * ```
+ */
+
 export function useCameraDevices(deviceType) {
   const [cameraDevices, setCameraDevices] = useState(DefaultCameraDevices);
   useEffect(() => {
     let isMounted = true;
-
     const loadDevice = async () => {
       let devices = await Camera.getAvailableCameraDevices();
       if (!isMounted) return;
       devices = devices.sort(sortDevices);
-
       if (deviceType != null) {
         devices = devices.filter(d => {
           const parsedType = parsePhysicalDeviceTypes(d.devices);
           return parsedType === deviceType;
         });
       }
-
       setCameraDevices({
         back: devices.find(d => d.position === 'back'),
         external: devices.find(d => d.position === 'external'),
@@ -45,7 +57,6 @@ export function useCameraDevices(deviceType) {
         unspecified: devices.find(d => d.position === 'unspecified')
       });
     };
-
     loadDevice();
     return () => {
       isMounted = false;

@@ -4,7 +4,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.parsePhysicalDeviceTypes = void 0;
-
 /**
  * Indentifiers for a physical camera (one that actually exists on the back/front of the device)
  *
@@ -30,7 +29,6 @@ const parsePhysicalDeviceTypes = physicalDeviceTypes => {
     // @ts-expect-error for very obvious reasons
     return physicalDeviceTypes[0];
   }
-
   const hasWide = physicalDeviceTypes.includes('wide-angle-camera');
   const hasUltra = physicalDeviceTypes.includes('ultra-wide-angle-camera');
   const hasTele = physicalDeviceTypes.includes('telephoto-camera');
@@ -39,6 +37,7 @@ const parsePhysicalDeviceTypes = physicalDeviceTypes => {
   if (hasWide && hasTele) return 'dual-camera';
   throw new Error(`Invalid physical device type combination! ${physicalDeviceTypes.join(' + ')}`);
 };
+
 /**
  * Indicates a format's color space.
  *
@@ -62,6 +61,30 @@ const parsePhysicalDeviceTypes = physicalDeviceTypes => {
  * > See ["Android Color Formats"](https://jbit.net/Android_Colors/) for more information.
  */
 
+/**
+ * Indicates a format's autofocus system.
+ *
+ * * `"none"`: Indicates that autofocus is not available
+ * * `"contrast-detection"`: Indicates that autofocus is achieved by contrast detection. Contrast detection performs a focus scan to find the optimal position
+ * * `"phase-detection"`: Indicates that autofocus is achieved by phase detection. Phase detection has the ability to achieve focus in many cases without a focus scan. Phase detection autofocus is typically less visually intrusive than contrast detection autofocus
+ */
 
+/**
+ * Indicates a format's supported video stabilization mode
+ *
+ * * `"off"`: Indicates that video should not be stabilized
+ * * `"standard"`: Indicates that video should be stabilized using the standard video stabilization algorithm introduced with iOS 5.0. Standard video stabilization has a reduced field of view. Enabling video stabilization may introduce additional latency into the video capture pipeline
+ * * `"cinematic"`: Indicates that video should be stabilized using the cinematic stabilization algorithm for more dramatic results. Cinematic video stabilization has a reduced field of view compared to standard video stabilization. Enabling cinematic video stabilization introduces much more latency into the video capture pipeline than standard video stabilization and consumes significantly more system memory. Use narrow or identical min and max frame durations in conjunction with this mode
+ * * `"cinematic-extended"`: Indicates that the video should be stabilized using the extended cinematic stabilization algorithm. Enabling extended cinematic stabilization introduces longer latency into the video capture pipeline compared to the AVCaptureVideoStabilizationModeCinematic and consumes more memory, but yields improved stability. It is recommended to use identical or similar min and max frame durations in conjunction with this mode (iOS 13.0+)
+ * * `"auto"`: Indicates that the most appropriate video stabilization mode for the device and format should be chosen automatically
+ */
+
+/**
+ * A Camera Device's video format. Do not create instances of this type yourself, only use {@linkcode Camera.getAvailableCameraDevices | Camera.getAvailableCameraDevices()}.
+ */
+
+/**
+ * Represents a camera device discovered by the {@linkcode Camera.getAvailableCameraDevices | Camera.getAvailableCameraDevices()} function
+ */
 exports.parsePhysicalDeviceTypes = parsePhysicalDeviceTypes;
 //# sourceMappingURL=CameraDevice.js.map

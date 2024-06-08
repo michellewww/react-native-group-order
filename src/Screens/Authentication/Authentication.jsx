@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
 import goosecart from "../../../assets/Authentication/goosecart.png";
 import Login from "./Login/Login";
+import Signup from "./Login/Signup";
 import { ChevronLeftIcon } from "react-native-heroicons/solid";
 import { Pressable } from "react-native";
 
@@ -36,7 +37,7 @@ const Authentication = () => {
         <View className="space-y-3 w-full">
           {["SIGN IN", "SIGN UP"].map((item, index) => (
             <Text
-              onPress={() => navigation.navigate("signIn")}
+              onPress={() => navigation.navigate(index == 0? "signIn": "signUp")}
               key={index}
               className={`w-full py-3 text-center rounded-lg font-semibold text-lg ${
                 index === 0
@@ -72,6 +73,21 @@ const Authentication = () => {
         options={{
           headerShadowVisible: false,
           headerTitle: "SIGN IN",
+          headerTitleStyle: {
+            color: "black",
+            fontWeight: "bold",
+            fontSize: 20,
+          },
+          headerTitleAlign: "center",
+          headerLeft: () => <HeaderLeft />,
+        }}
+      />
+      <Stack.Screen
+        name="signUp"
+        component={Signup}
+        options={{
+          headerShadowVisible: false,
+          headerTitle: "SIGN UP",
           headerTitleStyle: {
             color: "black",
             fontWeight: "bold",

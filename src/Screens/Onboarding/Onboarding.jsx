@@ -62,6 +62,13 @@ const Onboarding = () => {
         source={images[sharedValues.value]}
       />
 
+      <Animated.View
+        style = {[
+          StyleSheet.absoluteFill,
+          { backgroundColor: 'rgba(0, 0, 0, 0.5)' },
+        ]}
+      />
+
       <Pressable onPress={() => navigation.navigate("authentication")} className="mt-12 text-end px-6">
         <Text className="text-right text-gray-200 font-bold">SKIP</Text>
       </Pressable>
@@ -124,7 +131,7 @@ const Onboarding = () => {
               }}
               className="h-16 w-16 bg-primaryColor rounded-full flex-row items-center justify-center"
             >
-              <ArrowSmallRightIcon size={34} color="white" />
+              <ArrowSmallRightIcon size={34} color="black" />
             </TouchableOpacity>
           </View>
           <View

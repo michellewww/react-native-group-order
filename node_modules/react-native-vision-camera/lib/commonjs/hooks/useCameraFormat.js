@@ -4,11 +4,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.useCameraFormat = useCameraFormat;
-
 var _react = require("react");
-
 var _FormatFilter = require("../utils/FormatFilter");
-
 /**
  * Returns the best format for the given camera device.
  *

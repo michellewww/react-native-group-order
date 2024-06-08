@@ -1,6 +1,7 @@
 import "react-native-gesture-handler";
 import Onboarding from "./src/Screens/Onboarding/Onboarding";
 import Authentication from "./src/Screens/Authentication/Authentication";
+import Signup from "./src/Screens/Authentication/Login/Signup";
 import ShareLocation from "./src/Screens/ShareLocation/ShareLocation";
 import Home from "./src/Screens/Home/Home";
 import Order from "./src/Screens/Order/Order";
@@ -14,6 +15,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import OrderSuccess from "./src/Screens/OrderSuccess/OrderSuccess";
 import OrderDetails from "./src/Screens/OrderDetails/OrderDetails";
 import CreditCardDetails from "./src/Screens/CreditCard/CreditCardDetails";
+import ConfirmEmail from "./src/Screens/Authentication/confirmEmail";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -31,6 +33,16 @@ export default function App() {
               <Stack.Screen
                 component={Authentication}
                 name="authentication"
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                component={Signup}
+                name="signup"
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                component={ConfirmEmail}
+                name="confirmemail"
                 options={{ headerShown: false }}
               />
               <Stack.Screen
