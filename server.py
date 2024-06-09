@@ -38,6 +38,7 @@ def emailChecker():
     return jsonify({"isValid": is_valid})
 
 
+#TODO
 @app.route('/signup', methods=['POST'])
 def signup():
     data = request.get_json()
@@ -60,6 +61,7 @@ def signup():
     except Exception as e:
         return jsonify({"error": str(e)}), 400
 
+#TODO
 @app.route('/verifyuser', methods=['POST'])
 def verify_user():
     data = request.get_json()
@@ -73,6 +75,29 @@ def verify_user():
         return jsonify({"message": "Email verified"}), 200
     else:
         return jsonify({"error": "Invalid verification code"}), 400
+
+@app.route('/selectrole', methods=['POST'])
+def select_role ():
+    try:
+        data = request.json
+        # app.logger.info(f'Received data: {data}')
+        id = data.get("uid")
+        role = data.get("role")
+
+        if not id or not role:
+            return jsonify({"error": "Missing uid or role"}), 400
+        user = auth.get_user_by_email(id)
+        uid= user.uid
+        app.logger.info(f"{uid}")
+        auth.set_custom_user_claims(uid, {'role': role})
+        roles_ref = db.collection('roles').document(uid)
+        roles_ref.set({'role': role})
+
+        app.logger.info(f'Role {role} assigned to user {uid} and stored in Firestore')
+        return jsonify({"success": True, "message": "Role assigned successfully"}), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
     
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5001, debug=True)

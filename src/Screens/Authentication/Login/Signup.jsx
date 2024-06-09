@@ -7,8 +7,6 @@ import {
     Image,
     ScrollView,
   } from "react-native";
-import user from "../../../../assets/Icons/user.png";
-import provider from "../../../../assets/Icons/provider.png";
 import { EyeIcon } from "react-native-heroicons/solid";
 import {useState} from "react";
 import { 
@@ -112,37 +110,7 @@ const Signup = ({navigation}) => {
 
 
             <View className="flex flex-row w-full space-x-[5%]">
-            {[user, provider].map((item, index) => (
-            <View
-                className="flex-row items-center justify-between bg-gray-100 px-4 py-4 rounded-xl w-[30%]"
-                key={index}
-                style = {{display:"block", marginLeft: "auto", marginRight: "auto"}}
-            >
-                <Image source={item} style = {{height: 140, width: 110}}className="h-6 mx-auto" />
             </View>
-            ))}
-            </View>
-    
-        {/* <View className="flex flex-row w-full space-x-[5%] justify-around">
-            {[{ item: user, screen: UserSignup }, { item: provider, screen: ProviderSignup}].map((role, index) => (
-                <TouchableOpacity
-                key={index}
-                onPress={() => navigation.navigate(role.screen)}
-                style={{
-                    display: "block",
-                    marginHorizontal: "10%",
-                }}
-                >
-                <View className="flex-row items-center justify-between bg-gray-100 px-4 py-4 rounded-xl w-[30%]">
-                    <Image
-                    source={role.item}
-                    style={{ height: 140, width: 110 }}
-                    className="h-6 mx-auto"
-                    />
-                </View>
-                </TouchableOpacity>
-            ))}
-        </View> */}
   
   
             <View className="flex-row items-center">

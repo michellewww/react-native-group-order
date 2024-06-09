@@ -3,7 +3,7 @@ from sendgrid.helpers.mail import Mail
 import random
 import string
 
-#check email format
+#Function to check email format
 def check_email(email):
     if ("@" not in email) or ("." not in email.split("@")[1]):
         return False
@@ -13,6 +13,6 @@ def check_email(email):
             return False
         return True
 
-#generate random code
+#Function to generate random code
 def code_generation (length = 6):
     return ''.join(random.choices(string.ascii_uppercase + string.digits, k=length))

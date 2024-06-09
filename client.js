@@ -43,3 +43,16 @@ export const verifyuser = async (email, code) => {
     }
 }
 
+export const selectRole = async(uid, role) => {
+    try {
+        const response = await axios.post("http://127.0.0.1:5001/selectrole",{
+            uid: uid,
+            role: role
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Error selecting role:', error);
+        throw error;
+    }
+}
+

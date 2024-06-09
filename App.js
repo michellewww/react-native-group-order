@@ -16,6 +16,7 @@ import OrderSuccess from "./src/Screens/OrderSuccess/OrderSuccess";
 import OrderDetails from "./src/Screens/OrderDetails/OrderDetails";
 import CreditCardDetails from "./src/Screens/CreditCard/CreditCardDetails";
 import ConfirmEmail from "./src/Screens/Authentication/confirmEmail";
+import RoleSelection from "./src/Screens/Authentication/RoleSelection";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -43,6 +44,11 @@ export default function App() {
               <Stack.Screen
                 component={ConfirmEmail}
                 name="confirmemail"
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                component={RoleSelection}
+                name="roleselection"
                 options={{ headerShown: false }}
               />
               <Stack.Screen

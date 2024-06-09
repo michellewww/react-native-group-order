@@ -13,7 +13,7 @@ const ConfirmEmail = ({ navigation, route }) => {
 
   const handleEmailVerification = async() => {
     try {
-        navigation.navigate('location');
+        navigation.navigate('roleselection', {email});
     } catch (err){
         setError(err.message);
     }
