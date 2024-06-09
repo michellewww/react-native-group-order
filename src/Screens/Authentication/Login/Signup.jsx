@@ -40,7 +40,7 @@ const Signup = ({navigation}) => {
 
         try {
             const data = await signup(email, password);
-            navigation.navigate("confirmemail", { email });
+            navigation.navigate("confirmemail", { email, password });
         } catch (err) {
             setError(err.message);
         }

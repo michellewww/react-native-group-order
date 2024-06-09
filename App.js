@@ -17,6 +17,8 @@ import OrderDetails from "./src/Screens/OrderDetails/OrderDetails";
 import CreditCardDetails from "./src/Screens/CreditCard/CreditCardDetails";
 import ConfirmEmail from "./src/Screens/Authentication/confirmEmail";
 import RoleSelection from "./src/Screens/Authentication/RoleSelection";
+import ProtectedRoute from "./src/Screens/Protected/ProtectedScreen";
+import Login from "./src/Screens/Authentication/Login/Login";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -49,6 +51,16 @@ export default function App() {
               <Stack.Screen
                 component={RoleSelection}
                 name="roleselection"
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                component={Login}
+                name="Login"
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                component={ProtectedRoute}
+                name="ProtectedRoute"
                 options={{ headerShown: false }}
               />
               <Stack.Screen

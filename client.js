@@ -43,16 +43,40 @@ export const verifyuser = async (email, code) => {
     }
 }
 
-export const selectRole = async(uid, role) => {
+export const selectRole = async(uid, role, password) => {
     try {
         const response = await axios.post("http://127.0.0.1:5001/selectrole",{
             uid: uid,
-            role: role
+            role: role,
+            password: password
         });
         return response.data;
     } catch (error) {
         console.error('Error selecting role:', error);
         throw error;
+    }
+}
+
+export const signin = async(email, password) => {
+    try{
+        const response = await axios.post("http://127.0.0.1:5001/signin",{
+            email:email,
+            password:password
+        });
+        return response.data
+    } catch (error) {
+        throw error.response.data; 
+    }
+}
+
+export const getToken = async(email) => {
+    try {
+        const response = await axios.post("http://127.0.0.1:5001/tokencheck",{
+            email:email
+        });
+        return response.data;
+    } catch (error) {
+        throw error.response.data;
     }
 }
 

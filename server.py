@@ -76,6 +76,7 @@ def verify_user():
     else:
         return jsonify({"error": "Invalid verification code"}), 400
 
+#function for role selection
 @app.route('/selectrole', methods=['POST'])
 def select_role ():
     try:
@@ -83,6 +84,7 @@ def select_role ():
         # app.logger.info(f'Received data: {data}')
         id = data.get("uid")
         role = data.get("role")
+        password = data.get("password")
 
         if not id or not role:
             return jsonify({"error": "Missing uid or role"}), 400
@@ -92,11 +94,62 @@ def select_role ():
         auth.set_custom_user_claims(uid, {'role': role})
         roles_ref = db.collection('roles').document(uid)
         roles_ref.set({'role': role})
+        hashed_password = backend.hash_password(password)
+        roles_ref.set({"password": hashed_password}, merge=True)
 
         app.logger.info(f'Role {role} assigned to user {uid} and stored in Firestore')
         return jsonify({"success": True, "message": "Role assigned successfully"}), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
+@app.route('/signin', methods=['POST'])
+def signin():
+    data = request.json
+    email = data.get('email')
+    password = data.get('password')
+
+    user = auth.get_user_by_email(email)
+    uid = user.uid
+    roles_ref = db.collection('roles').document(uid)
+    fields = roles_ref.get()
+    try:
+        if fields.exists:
+            stored_hash = fields.to_dict().get('password')
+            if backend.verify_password(stored_hash, password):
+                token = auth.create_custom_token(uid)
+                roles_ref = db.collection('roles').document(uid)
+                roles_ref.set({"token": token}, merge=True)
+                return jsonify({"success": True, "token": token.decode('utf-8')}), 200
+            else:
+                return jsonify({"error": "Invalid password"}), 401
+        else:
+            return jsonify({"error": "User not found"}), 404
+    except Exception as e:
+        return jsonify({"message": "Error signing in", "error": str(e)}), 500
+
+@app.route("/tokencheck", methods=["POST"])
+def check_token():
+    data = request.json
+    email = data.get("email")
+
+    user = auth.get_user_by_email(email)
+    uid = user.uid
+    ref = db.collection("roles").document(uid)
+    fields = ref.get()
+    try:
+        if fields.exists:
+            token = fields.to_dict().get("token")
+            if token:
+                if isinstance(token, bytes):
+                    token = token.decode('utf-8')  # Decode
+                return jsonify({"success": True, "token": token}), 200
+            else:
+                return jsonify({"error": "Invalid token"}), 401
+        else:
+            return jsonify({"error": "User not found"}), 404
+    except Exception as e:
+        app.logger.info(e)
+        return jsonify({"message": "Error signing in", "error": str(e)}), 500
 
     
 if __name__ == '__main__':

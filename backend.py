@@ -2,6 +2,7 @@ from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 import random
 import string
+import bcrypt
 
 #Function to check email format
 def check_email(email):
@@ -16,3 +17,12 @@ def check_email(email):
 #Function to generate random code
 def code_generation (length = 6):
     return ''.join(random.choices(string.ascii_uppercase + string.digits, k=length))
+
+#password hashing
+def hash_password(password):
+    salt = bcrypt.gensalt()
+    hash = bcrypt.hashpw(password.encode(), salt)
+    return hash
+
+def verify_password(stored_hash, password):
+    return bcrypt.checkpw(password.encode(), stored_hash)

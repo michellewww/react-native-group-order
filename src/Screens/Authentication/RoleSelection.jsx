@@ -2,7 +2,7 @@ import { View, Text, TextInput,Dimensions, TouchableOpacity, StyleSheet, Image, 
 import {useState} from "react";
 import user from "../../../assets/Icons/user.png";
 import provider from "../../../assets/Icons/provider.png";
-import ShareLocation from "../ShareLocation/ShareLocation";
+import Authentication from "./Authentication";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useNavigation, useRoute} from "@react-navigation/native";
 import { selectRole } from "../../../client";
@@ -13,15 +13,15 @@ const RoleSelection = () => {
     const navigation = useNavigation();
     const route = useRoute();
     const [selectedRole, setSelectedRole] = useState();
-    const { email } = route.params;
+    const { email, password } = route.params;
 
     const handleRoleSelection = async(role) => {
         const userUid = email;
         try {
-            const response = await selectRole(userUid, role);
+            const response = await selectRole(userUid, role, password);
             console.log(response);
             if (response.success) {
-                navigation.navigate('location');
+                navigation.navigate('signin');
             };
         } catch (error) {
             console.error('Failed to select role:', error);
@@ -67,10 +67,6 @@ const RoleSelection = () => {
                 </Text>
                 <View className="w-full flex-1 border-t border-gray-400" />
             </View>
-
-            <Text onPress={() => navigation.navigate("location")} className="w-full py-3 text-center rounded-lg font-semibold text-lg bg-primaryColor text-white">
-                Sign Up
-            </Text>
             </View>
         );
     };
@@ -83,8 +79,8 @@ const RoleSelection = () => {
             options={{ headerShown: false }}
         />
         <Stack.Screen
-            name="location"
-            component={ShareLocation}
+            name="signin"
+            component={Authentication}
             options={{ headerShown: false}}
         />
         </Stack.Navigator>

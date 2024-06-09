@@ -8,6 +8,7 @@ import {
   ExclamationCircleIcon,
   QuestionMarkCircleIcon,
   SunIcon,
+  UserMinusIcon
 } from "react-native-heroicons/outline";
 
 const Profile = () => {
@@ -36,6 +37,10 @@ const Profile = () => {
     {
       name: "Theme",
       icon: SunIcon,
+    },
+    {
+      name: "Sign Out",
+      icon: UserMinusIcon,
     },
   ];
 

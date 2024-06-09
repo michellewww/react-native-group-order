@@ -7,13 +7,48 @@ import {
   Image,
   ScrollView,
 } from "react-native";
+import { useState } from "react";
 import facebook from "../../../../assets/Icons/facebook.png";
 import apple from "../../../../assets/Icons/apple.png";
 import google from "../../../../assets/Icons/google.png";
 import { EyeIcon } from "react-native-heroicons/solid";
+import { checkEmailValidity, signin } from "../../../../client";
 
 const Login = ({navigation}) => {
   const { height, width } = Dimensions.get("screen");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
+
+  const handleLogin = async() => {
+    if (!email || !password) {
+      setError("You should fill out both email and password");
+      return;
+    } else {
+      setError(null);
+    }
+
+    try {
+      const isValidEmail = await checkEmailValidity(email);
+      if (!isValidEmail) {
+        setError("Email is not valid.\nExample form: abc@goosecart.com");
+        return;
+      } else {
+        setError(null);
+      }
+    } catch (err) {
+        setError("Failed to check email validity.");
+    }
+  
+    try {
+      const result = await signin(email, password);
+      console.log('Success', 'Login successful');
+      navigation.navigate('ProtectedRoute', {email});
+    } catch (error) {
+      setError(error.message || "Invalid Password");
+    }
+  }
+
   return (
     <ScrollView
       contentContainerStyle={{
@@ -38,25 +73,42 @@ const Login = ({navigation}) => {
         <TextInput
           placeholder="Enter your email"
           className="border-gray-200 rounded-lg border-2 py-2 px-4"
+          autoCapitalize="none"
+          value={email}
+          onChangeText={setEmail}
         />
         <View className="flex-row items-center px-4 border-2 border-gray-200 rounded-lg">
           <TextInput
             className="flex-1 py-2"
             keyboardType="numeric"
             placeholder="Enter your password"
+            value={password}
+            onChangeText={setPassword}
+            // secureTextEntry={true}
           />
           <EyeIcon color="gray" size={24} />
         </View>
-        <TouchableOpacity>
+
+        {error && (
+                <Text style={{ color: 'red', textAlign: 'center' }}>{error}</Text>
+        )}
+
+        {/* <TouchableOpacity>
           <Text className="text-right text-primaryColor font-[500]">
             Forgot Password?
           </Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
+      
 
-      <Text onPress={() => navigation.navigate("location")} className="text-white bg-primaryColor text-center py-3 font-semibold rounded-lg">
+      {/* <Text onPress={() => navigation.navigate("location")} className="text-white bg-primaryColor text-center py-3 font-semibold rounded-lg">
         LOGIN
-      </Text>
+      </Text> */}
+      <TouchableOpacity onPress={handleLogin}>
+        <Text className="text-white bg-primaryColor text-center py-3 font-semibold rounded-lg">
+          LOGIN
+        </Text>
+      </TouchableOpacity>
 
       <View className="flex-row items-center">
         <View className="w-full flex-1 border-t border-gray-400" />

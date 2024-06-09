@@ -6,14 +6,14 @@ import image from "../../../assets/Onboarding/confirmemail.png";
 // } from "../../../client";
 
 const ConfirmEmail = ({ navigation, route }) => {
-  const { email } = route.params;
+  const { email, password } = route.params;
   const { height, width } = Dimensions.get("screen");
   const [ code, setCode] = useState("");
   const [ error, setError] = useState("");
 
   const handleEmailVerification = async() => {
     try {
-        navigation.navigate('roleselection', {email});
+        navigation.navigate('roleselection', {email, password});
     } catch (err){
         setError(err.message);
     }
