@@ -1,5 +1,7 @@
-import { View, Text, Image, StatusBar } from "react-native";
-import React from "react";
+import { View, Text, Image, StatusBar, TouchableOpacity } from "react-native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, {useState }from "react";
+import { useNavigation } from '@react-navigation/native';
 import {
   TagIcon,
   UserIcon,
@@ -10,8 +12,11 @@ import {
   SunIcon,
   UserMinusIcon
 } from "react-native-heroicons/outline";
+import { signout } from "../../../../client";
 
 const Profile = () => {
+  const navigation = useNavigation();
+  const {error, setError} = useState();
   const data = [
     {
       name: "Profile",
@@ -40,9 +45,25 @@ const Profile = () => {
     },
     {
       name: "Sign Out",
-      icon: UserMinusIcon,
+      icon: UserMinusIcon
     },
   ];
+
+  const handleSignout  = async() => {
+    const email = await AsyncStorage.getItem('email');
+    if (email) {
+      try {
+        const response = await signout(email);
+        if (response.success) {
+          await AsyncStorage.removeItem('authToken');
+          await AsyncStorage.removeItem('email');
+          navigation.navigate('authentication');
+        } 
+      } catch (error) {
+        setError(error.message);
+      }
+    }
+  };
 
   return (
     <View
@@ -60,19 +81,36 @@ const Profile = () => {
           }}
         />
         <View className="ml-4">
-          <Text className="font-bold text-lg">Sophia Chen</Text>
+          {/* <Text className="font-bold text-lg">Sophia Chen</Text> */}
           <Text className="text-[12px] text-gray-500">sophia@gmail.com</Text>
         </View>
       </View>
 
-      <View className="mt-8">
+      {/* <View className="mt-8">
         {data.map((item, index) => (
           <View className="flex-row items-center mb-8" key={index}>
             <item.icon color="black" size={24} />
             <Text className="ml-4 font-semibold text-[18px]">{item.name}</Text>
           </View>
         ))}
+      </View> */}
+      <View className="mt-8">
+        {data.map((item, index) => (
+          <View className="flex-row items-center mb-8" key={index}>
+            <item.icon color="black" size={24} />
+            {(item.name == "Sign Out") ? (
+              <TouchableOpacity onPress={handleSignout}>
+                <Text className="ml-4 font-semibold text-[18px]">{item.name}</Text>
+              </TouchableOpacity>
+            ) : (
+              <Text className="ml-4 font-semibold text-[18px]">{item.name}</Text>
+            )}
+          </View>
+        ))}
       </View>
+      {error && (
+        <Text style={{ color: 'red', textAlign: 'center' }}>{error}</Text>
+      )}
     </View>
   );
 };

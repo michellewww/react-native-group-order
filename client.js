@@ -80,3 +80,13 @@ export const getToken = async(email) => {
     }
 }
 
+export const signout =async(email) => {
+    try {
+        const response = await axios.post("http://127.0.0.1:5001/signout",{
+            email:email
+        });
+        return response.data;
+    } catch (error) {
+        throw error.response.data;
+    }
+}

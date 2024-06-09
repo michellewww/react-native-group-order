@@ -151,6 +151,21 @@ def check_token():
         app.logger.info(e)
         return jsonify({"message": "Error signing in", "error": str(e)}), 500
 
+@app.route('/signout', methods=['POST'])
+def signout():
+    try:
+        data = request.json
+        email = data.get("email")
+
+        if not email:
+            return jsonify({"error": "Email is required"}), 400
+        user = auth.get_user_by_email(email)
+        uid = user.uid
+        ref = db.collection("roles").document(uid)
+        ref.update({"token": firestore.DELETE_FIELD})
+        return jsonify({"success": True, "message": "Signed out successfully"}), 200
+    except Exception as e:
+        return jsonify({"message": "Error signing out", "error": str(e)}), 500
     
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5001, debug=True)

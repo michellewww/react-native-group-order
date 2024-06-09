@@ -19,6 +19,7 @@ const ProtectedRoute = ({ children, route }) => {
             if (response.success) {
               console.log(response.success)
               await AsyncStorage.setItem('authToken', response.token);
+              await AsyncStorage.setItem('email', email);
               setIsAuthorized(true);
               navigation.navigate("location")
             } else {
