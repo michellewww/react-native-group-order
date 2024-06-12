@@ -1,5 +1,5 @@
-from sendgrid import SendGridAPIClient
-from sendgrid.helpers.mail import Mail
+# from sendgrid import SendGridAPIClient
+# from sendgrid.helpers.mail import Mail
 import random
 import string
 import bcrypt

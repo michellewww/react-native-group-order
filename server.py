@@ -22,7 +22,7 @@ app.config['MAIL_DEFAULT_SENDER'] = os.getenv('MAIL_DEFAULT_SENDER')
 mail = Mail(app)
 
 # firebase admin SDK (downloaded from firebase console)
-cred = credentials.Certificate("/Users/xichen/Downloads/goosecart-ed780-firebase-adminsdk-9ss4w-2d66354853.json")
+cred = credentials.Certificate("/Users/michelle/Desktop/goosecart-ed780-firebase-adminsdk-9ss4w-fd080e4876.json")
 firebase_admin.initialize_app(cred)
 
 db = firestore.client()

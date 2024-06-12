@@ -14,6 +14,7 @@ import {
   PlusIcon,
   MinusIcon,
   ChevronRightIcon,
+  ArrowLeftIcon,
 } from "react-native-heroicons/solid";
 import delivery from "../../../assets/Order/delivery.png";
 import rating from "../../../assets/Order/rating.png";
@@ -84,6 +85,12 @@ const Order = ({ route, navigation }) => {
       contentContainerStyle={{ backgroundColor: "white" }}
       showsVerticalScrollIndicator={false}
     >
+      <TouchableOpacity
+        style={styles.backButton}
+        onPress={() => navigation.goBack()}
+      >
+        <ArrowLeftIcon size={24} color="black" />
+      </TouchableOpacity>
       <Image
         className="h-80 w-full"
         preserveAspectRatio="xMidYMid slice"
@@ -272,5 +279,20 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
+  },
+
+  backButton: {
+    position: "absolute",
+    top: 40,
+    left: 20,
+    zIndex: 10,
+    backgroundColor: "transparent",
+    borderRadius: 20,
+    padding: 8,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+    elevation: 5,
   },
 });
