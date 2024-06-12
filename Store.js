@@ -12,6 +12,7 @@ import {
 } from "redux-persist";
 import cartReducer from "./src/Features/Cart/CartSlice";
 import orderReducer from "./src/Features/Order/OrderSlice";
+import locationReducer from "./src/Features/Location/LocationSlice";
 
 const persistConfig = {
   key: "root",
@@ -23,6 +24,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   cart: cartReducer,
   order: orderReducer,
+  location: locationReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
