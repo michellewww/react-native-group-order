@@ -1,6 +1,6 @@
-import { View, Text, Image, StatusBar, TouchableOpacity } from "react-native";
+import React, { useState, useEffect } from "react";
+import { View, Text, Image, StatusBar, TouchableOpacity, SafeAreaView } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import React, { useState } from "react";
 import { useNavigation } from '@react-navigation/native';
 import {
   TagIcon,
@@ -17,6 +17,19 @@ import { signout } from "../../../../client";
 const Profile = () => {
   const navigation = useNavigation();
   const [error, setError] = useState();
+  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
+
+  useEffect(() => {
+    const fetchProfileData = async () => {
+      const storedEmail = await AsyncStorage.getItem('email');
+      const storedUsername = await AsyncStorage.getItem('username');
+      if (storedEmail) setEmail(storedEmail);
+      if (storedUsername) setUsername(storedUsername);
+    };
+
+    fetchProfileData();
+  }, []);
 
   const data = [
     {
@@ -52,7 +65,7 @@ const Profile = () => {
     },
   ];
 
-  const handleSignout  = async() => {
+  const handleSignout = async () => {
     const email = await AsyncStorage.getItem('email');
     if (email) {
       try {
@@ -61,7 +74,7 @@ const Profile = () => {
           await AsyncStorage.removeItem('authToken');
           await AsyncStorage.removeItem('email');
           navigation.navigate('authentication');
-        } 
+        }
       } catch (error) {
         setError(error.message);
       }
@@ -69,11 +82,12 @@ const Profile = () => {
   };
 
   return (
-    <View
+    <SafeAreaView
       style={{
-        marginTop: StatusBar.currentHeight,
         flex: 1,
         paddingHorizontal: 24,
+        paddingTop: StatusBar.currentHeight || 0,
+        margin: 24,
       }}
     >
       <View className="flex-row mt-8">
@@ -84,7 +98,7 @@ const Profile = () => {
           }}
         />
         <View className="ml-4">
-          <Text className="text-[12px] text-gray-500">sophia@gmail.com</Text>
+          <Text className="text-[12px] text-gray-500">{username || email}</Text>
         </View>
       </View>
 
@@ -101,9 +115,8 @@ const Profile = () => {
       {error && (
         <Text style={{ color: 'red', textAlign: 'center' }}>{error}</Text>
       )}
-    </View>
+    </SafeAreaView>
   );
 };
 
 export default Profile;
-
