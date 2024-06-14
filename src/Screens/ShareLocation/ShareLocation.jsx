@@ -19,8 +19,12 @@ const ShareLocation = ({ navigation }) => {
     let location = await Location.getCurrentPositionAsync({});
     const { latitude, longitude } = location.coords;
     console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+
+    let address = await Location.reverseGeocodeAsync({ latitude, longitude });
+    const locationName = address[0].city + ", " + address[0].region;
+
     // Dispatch the location to the redux store
-    dispatch(setLocation({ latitude, longitude }));
+    dispatch(setLocation({ latitude, longitude, locationName }));
     navigation.navigate("home");
   };
 

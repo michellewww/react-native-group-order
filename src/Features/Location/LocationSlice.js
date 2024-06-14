@@ -1,14 +1,20 @@
 // Features/Location/LocationSlice.js
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
-export const locationSlice = createSlice({
-  name: "location",
-  initialState: {
-    location: "Atlanta, GA",  // default location
-  },
+const initialState = {
+  latitude: null,
+  longitude: null,
+  locationName: 'Atlanta, GA',
+};
+
+const locationSlice = createSlice({
+  name: 'location',
+  initialState,
   reducers: {
     setLocation: (state, action) => {
-      state.location = action.payload;
+      state.latitude = action.payload.latitude;
+      state.longitude = action.payload.longitude;
+      state.locationName = action.payload.locationName;
     },
   },
 });
@@ -16,3 +22,4 @@ export const locationSlice = createSlice({
 export const { setLocation } = locationSlice.actions;
 
 export default locationSlice.reducer;
+

@@ -11,6 +11,7 @@ import {
   BellAlertIcon,
 } from "react-native-heroicons/solid";
 import { useState } from "react";
+import { useSelector } from 'react-redux';
 
 import CategoryCard from "../../../Components/CategoryCard/CategoryCard";
 
@@ -19,6 +20,7 @@ import { data, populars } from "../../../_DB/DB";
 
 const HomeBody = () => {
   const [active, setActive] = useState(0);
+  const locationName = useSelector((state) => state.location.locationName);
 
   return (
     <View style={{ flex: 1, marginTop: StatusBar.currentHeight }}>
@@ -27,7 +29,7 @@ const HomeBody = () => {
           <Text></Text>
           <View className="flex-row items-center space-x-2">
             <MapPinIcon color="#0BCE83" size={20} />
-            <Text className="font-bold text-lg">Atlanta, GA</Text>
+            <Text className="font-bold text-lg">{locationName || "Atlanta, GA"}</Text>
             <ChevronDownIcon color="#0BCE83" size={15} />
           </View>
           <TouchableOpacity className="h-10 w-10 bg-white p-1 rounded-xl flex-row items-center justify-center">
