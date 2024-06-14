@@ -1,6 +1,6 @@
 import { View, Text, Image, StatusBar, TouchableOpacity } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import React, {useState }from "react";
+import React, { useState } from "react";
 import { useNavigation } from '@react-navigation/native';
 import {
   TagIcon,
@@ -16,11 +16,13 @@ import { signout } from "../../../../client";
 
 const Profile = () => {
   const navigation = useNavigation();
-  const {error, setError} = useState();
+  const [error, setError] = useState();
+
   const data = [
     {
       name: "Profile",
       icon: UserIcon,
+      action: () => navigation.navigate('profilepage'),
     },
     {
       name: "Payment",
@@ -45,7 +47,8 @@ const Profile = () => {
     },
     {
       name: "Sign Out",
-      icon: UserMinusIcon
+      icon: UserMinusIcon,
+      action: handleSignout,
     },
   ];
 
@@ -81,30 +84,17 @@ const Profile = () => {
           }}
         />
         <View className="ml-4">
-          {/* <Text className="font-bold text-lg">Sophia Chen</Text> */}
           <Text className="text-[12px] text-gray-500">sophia@gmail.com</Text>
         </View>
       </View>
 
-      {/* <View className="mt-8">
-        {data.map((item, index) => (
-          <View className="flex-row items-center mb-8" key={index}>
-            <item.icon color="black" size={24} />
-            <Text className="ml-4 font-semibold text-[18px]">{item.name}</Text>
-          </View>
-        ))}
-      </View> */}
       <View className="mt-8">
         {data.map((item, index) => (
           <View className="flex-row items-center mb-8" key={index}>
             <item.icon color="black" size={24} />
-            {(item.name == "Sign Out") ? (
-              <TouchableOpacity onPress={handleSignout}>
-                <Text className="ml-4 font-semibold text-[18px]">{item.name}</Text>
-              </TouchableOpacity>
-            ) : (
+            <TouchableOpacity onPress={item.action}>
               <Text className="ml-4 font-semibold text-[18px]">{item.name}</Text>
-            )}
+            </TouchableOpacity>
           </View>
         ))}
       </View>
@@ -116,3 +106,4 @@ const Profile = () => {
 };
 
 export default Profile;
+

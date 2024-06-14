@@ -19,6 +19,7 @@ import ConfirmEmail from "./src/Screens/Authentication/confirmEmail";
 import RoleSelection from "./src/Screens/Authentication/RoleSelection";
 import ProtectedRoute from "./src/Screens/Protected/ProtectedScreen";
 import Login from "./src/Screens/Authentication/Login/Login";
+import ProfilePage from "./src/Screens/Home/Profile/ProfilePage";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -96,6 +97,11 @@ export default function App() {
               <Stack.Screen
                 component={CreditCardDetails}
                 name="creditcard"
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                component={ProfilePage}
+                name="profilepage"
                 options={{ headerShown: false }}
               />
             </Stack.Navigator>
