@@ -5,10 +5,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {PencilIcon,ArrowUturnLeftIcon } from "react-native-heroicons/solid";
 import defaultavator from "../../../../assets/Authentication/goosecart.png";
 
-const ProfilePage = () => {
+const ProfileEditPage = () => {
   const navigation = useNavigation();
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
+  const { height, width } = Dimensions.get("screen");
 
   useEffect(() => {
     const fetchProfileData = async () => {
@@ -29,10 +30,10 @@ const ProfilePage = () => {
     fetchProfileData();
   }, []);
 
-  // const handleUsernameChange = async (newUsername) => {
-  //   setUsername(newUsername);
-  //   await AsyncStorage.setItem('username', newUsername);
-  // };
+  const handleUsernameChange = async (newUsername) => {
+    setUsername(newUsername);
+    await AsyncStorage.setItem('username', newUsername);
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -53,17 +54,17 @@ const ProfilePage = () => {
 
       < View style={styles.content}>
           <Text style={styles.label}>Email</Text>
-          <Text style={styles.emailText}>{email}</Text>
+          <TextInput style={styles.input}>{email}</TextInput>
           <Text style={styles.label}>Phone</Text>
-          <Text style={styles.emailText}>{}</Text>
+          <TextInput style={styles.input}>{}</TextInput>
           <Text style={styles.label}>Location</Text>
-          <Text style={styles.emailText}>{}</Text>
+          <TextInput style={styles.input}>{}</TextInput>
           <Text style={styles.label}>Role</Text>
           <Text style={styles.emailText}>{}</Text>
       </View>
 
-      <Text onPress={()=>navigation.navigate("profileeditpage")}className="text-white bg-primaryColor text-center py-3 font-semibold rounded-lg">
-            Edit
+      <Text onPress={()=>navigation.navigate("profilepage")} className="text-white bg-primaryColor text-center py-3 font-semibold rounded-lg">
+            Save
       </Text>
     </SafeAreaView>
   );
@@ -118,6 +119,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: 'black',
     marginBottom: 20,
+    // backgroundColor: "#EAE9E7",
   },
   input: {
     height: 40,
@@ -125,6 +127,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     paddingLeft: 8,
     marginBottom: 20,
+    borderRadius: 10,
   },
   avatarContainer: {
     alignItems: 'center',
@@ -139,4 +142,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default ProfilePage;
+export default ProfileEditPage;

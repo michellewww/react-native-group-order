@@ -8,6 +8,9 @@ module.exports = {
         primaryDark: "#1D1D1D",
         danger: "#C30E0E",
       },
+      fontFamily: {
+        sans: ['Proxima Nova'], 
+      }
     },
   },
   plugins: [],

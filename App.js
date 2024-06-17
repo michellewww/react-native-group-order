@@ -20,6 +20,9 @@ import RoleSelection from "./src/Screens/Authentication/RoleSelection";
 import ProtectedRoute from "./src/Screens/Protected/ProtectedScreen";
 import Login from "./src/Screens/Authentication/Login/Login";
 import ProfilePage from "./src/Screens/Home/Profile/ProfilePage";
+import Profile from "./src/Screens/Home/Profile/Profile";
+import ProfileEditPage from "./src/Screens/Home/Profile/ProfileEditPage";
+import HomeRestaurant from "./src/Screens/Home/HomeBody/HomeRestaurant";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -35,13 +38,23 @@ export default function App() {
                 options={{ headerShown: false }}
               />
               <Stack.Screen
+                component={Signup}
+                name="signup"
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
                 component={Authentication}
                 name="authentication"
                 options={{ headerShown: false }}
               />
               <Stack.Screen
-                component={Signup}
-                name="signup"
+                component={Home}
+                name="home"
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                component={Profile}
+                name="profile"
                 options={{ headerShown: false }}
               />
               <Stack.Screen
@@ -67,11 +80,6 @@ export default function App() {
               <Stack.Screen
                 component={ShareLocation}
                 name="location"
-                options={{ headerShown: false }}
-              />
-              <Stack.Screen
-                component={Home}
-                name="home"
                 options={{ headerShown: false }}
               />
               <Stack.Screen
@@ -102,6 +110,16 @@ export default function App() {
               <Stack.Screen
                 component={ProfilePage}
                 name="profilepage"
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                component={ProfileEditPage}
+                name="profileeditpage"
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                component={HomeRestaurant}
+                name="homerestaurant"
                 options={{ headerShown: false }}
               />
             </Stack.Navigator>
